@@ -26,7 +26,8 @@ app.post("/chat", async (req, res) => {
     const reply = response.data.content[0].text;
     res.json({ reply });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("FULL ERROR:", JSON.stringify(err.response?.data || err.message));
+    res.status(500).json({ error: err.response?.data || err.message });
   }
 });
 
